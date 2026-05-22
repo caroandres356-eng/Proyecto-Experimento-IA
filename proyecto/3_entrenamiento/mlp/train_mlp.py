@@ -6,7 +6,7 @@ from sklearn.neural_network import MLPClassifier
 from sklearn.metrics import classification_report, confusion_matrix, accuracy_score
 
 # Añadir el directorio raíz al path de Python para importar 'shared'
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../..')))
 from shared.data_loader import load_and_preprocess_data
 
 def train_and_evaluate_mlp(hidden_layer_sizes=(100,), activation='relu', max_iter=500):

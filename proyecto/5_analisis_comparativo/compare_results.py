@@ -8,7 +8,7 @@ from sklearn.neural_network import MLPClassifier
 from sklearn.metrics import classification_report, confusion_matrix, accuracy_score, precision_recall_fscore_support
 
 # Añadir el directorio raíz al path de Python
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
 from shared.data_loader import load_and_preprocess_data
 
 def run_comparison():
@@ -54,24 +54,24 @@ def run_comparison():
     print(df_metrics.to_string(index=False))
     print("="*50)
     
-    # Guardar tabla a CSV
-    output_csv = os.path.join(os.path.dirname(__file__), 'comparacion_metricas_proyecto.csv')
+    # Guardar tabla a CSV en la carpeta de resultados
+    output_csv = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '6_resultados', 'comparacion_metricas_proyecto.csv'))
     df_metrics.to_csv(output_csv, index=False)
     print(f"[OK] Tabla guardada en: {output_csv}")
-    
-    # 4. Graficar y guardar matrices de confusión lado a lado
+
+    # 4. Graficar y guardar matrices de confusión lado a lado en su carpeta correspondiente
     fig, axes = plt.subplots(1, 2, figsize=(12, 5))
-    
+
     for i, (name, cm) in enumerate(confusion_matrices.items()):
-        sns.heatmap(cm, annot=True, fmt='d', cmap='Oranges', ax=axes[i], cbar=False,
+        sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', ax=axes[i], cbar=False,
                     xticklabels=['Sano (0)', 'Enfermo (1)'],
                     yticklabels=['Sano (0)', 'Enfermo (1)'])
         axes[i].set_title(f'Matriz de Confusión - {name}')
         axes[i].set_xlabel('Predicho')
         axes[i].set_ylabel('Real')
-        
+
     plt.tight_layout()
-    output_img = os.path.join(os.path.dirname(__file__), 'proyecto_confusion_matrices.png')
+    output_img = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '4_matrices_confusion', 'proyecto_confusion_matrices.png'))
     plt.savefig(output_img, dpi=300)
     plt.close()
     print(f"[OK] Grafico de matrices de confusion guardado en: {output_img}")
