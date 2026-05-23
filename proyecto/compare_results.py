@@ -20,7 +20,7 @@ def run_comparison():
     # 2. Definir y entrenar modelos (usando hiperparámetros por defecto o recomendados)
     models = {
         'SVM (RBF Kernel, C=1.0)': SVC(C=1.0, kernel='rbf', random_state=42),
-        'Red Neuronal MLP (100,)': MLPClassifier(hidden_layer_sizes=(100,), activation='relu', max_iter=500, random_state=42)
+        'Red Neuronal MLP (50, 25)': MLPClassifier(hidden_layer_sizes=(50,25), activation='relu', max_iter=500, random_state=42, early_stopping=True, validation_fraction=0.1)
     }
     
     metrics_summary = []
